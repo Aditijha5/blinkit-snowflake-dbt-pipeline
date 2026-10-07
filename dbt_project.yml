@@ -1,0 +1,20 @@
+name: blinkit_analytics
+version: "1.0.0"
+config-version: 2
+
+profile: blinkit_analytics
+
+model-paths: ["models"]
+macro-paths: ["macros"]
+test-paths: ["tests"]
+
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  blinkit_analytics:
+    staging:
+      +schema: staging
+      +materialized: view
+    marts:
+      +schema: marts
+      +materialized: table

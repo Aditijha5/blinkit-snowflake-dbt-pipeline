@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: dim_outlets
+    columns:
+      - name: outlet_id
+        tests: [unique, not_null]
+
+  - name: dim_items
+    columns:
+      - name: item_id
+        tests: [unique, not_null]
+
+  - name: fct_blinkit_sales
+    columns:
+      - name: blinkit_sale_key
+        tests: [unique, not_null]
+      - name: outlet_id
+        tests:
+          - relationships:
+              to: ref('dim_outlets')
+              field: outlet_id
+      - name: item_id
+        tests:
+          - relationships:
+              to: ref('dim_items')
+              field: item_id
+
+  - name: mart_outlet_sales
+    columns:
+      - name: outlet_sales_key
+        tests: [unique, not_null]
+
+  - name: mart_item_type_sales
+    description: sales by item type and fat content

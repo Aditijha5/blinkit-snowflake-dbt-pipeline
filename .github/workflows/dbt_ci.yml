@@ -1,0 +1,24 @@
+name: dbt-ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  parse:
+    runs-on: ubuntu-latest
+    env:
+      SNOWFLAKE_ACCOUNT: dummy
+      SNOWFLAKE_USER: dummy
+      SNOWFLAKE_PASSWORD: dummy
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - run: cp profiles.yml.example profiles.yml
+      - name: validate project compiles
+        run: dbt parse --profiles-dir 
+    

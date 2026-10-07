@@ -1,0 +1,14 @@
+# copy to profiles.yml (git-ignored) or use as-is: all secrets come from environment variables
+blinkit_analytics:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
+      user: "{{ env_var('SNOWFLAKE_USER') }}"
+      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+      role: "{{ env_var('SNOWFLAKE_ROLE', 'ACCOUNTADMIN') }}"
+      database: BLINKIT_DB
+      warehouse: BLINKIT_WH
+      schema: ANALYTICS
+      threads: 4

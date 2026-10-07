@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: stg_blinkit_orders
+    description: cleaned and typed blinkit sales rows
+    columns:
+      - name: item_id
+        tests: [not_null]
+      - name: outlet_id
+        tests: [not_null]
+      - name: sales
+        tests: [not_null]
+      - name: item_fat_content
+        description: standardised to low fat / regular / unknown
+        tests:
+          - accepted_values:
+              values: ['Low Fat', 'Regular', 'Unknown']

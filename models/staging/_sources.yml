@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: blinkit_raw
+    database: blinkit_db
+    schema: raw
+    tables:
+      - name: blinkit_orders_raw
+        description: raw blinkit grocery sales rows, loaded as-is from s3
