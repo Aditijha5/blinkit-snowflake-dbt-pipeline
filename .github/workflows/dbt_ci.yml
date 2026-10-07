@@ -20,5 +20,6 @@ jobs:
       - run: pip install -r requirements.txt
       - run: cp profiles.yml.example profiles.yml
       - name: validate project compiles
-        run: dbt parse --profiles-dir 
+        run: dbt parse --profiles-dir .
+        
     
